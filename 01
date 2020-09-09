@@ -1,0 +1,23 @@
+import java.util.Scanner;
+
+public class Test7 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int num2 = 0;
+        int num5 = 0;
+        for(int i = 1;i <= n;i ++) {
+            int numm = i;
+            int num = i;
+            while(num % 2 == 0) {
+                num2 ++;
+                num = num/2;
+            }
+            while (numm % 5 == 0) {
+                num5 ++;
+                numm = numm / 5;
+            }
+        }
+        System.out.println(Math.min(num2,num5));
+    }
+}
