@@ -1,0 +1,21 @@
+public boolean chkParenthesis(String s, int input) {
+        int l = 0;
+        char[] array = s.toCharArray();
+        for(char ch : array) {
+            if(ch == '(') {
+                l++;
+            }else if(ch == ')') {
+                if(l <= 0) {
+                    return false;
+                }else {
+                    l--;
+                }
+            }else {
+                continue;
+            }
+        }
+        if(l != 0) {
+            return false;
+        }
+        return true;
+    }
