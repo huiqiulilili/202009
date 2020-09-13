@@ -1,0 +1,29 @@
+public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String str = sc.nextLine();
+        String[] strArray = str.split(" ");
+        int k = sc.nextInt();
+
+        int start;
+        start = 0;
+
+        while(start + k  - 1 < strArray.length - 1) {
+            reverse(strArray,start,start + k - 1);
+            start = start + k;
+        }
+
+        for (int i = 0; i < strArray.length - 2 ; i++) {
+            System.out.print(strArray[i] + "->");
+        }
+        System.out.println(strArray[strArray.length -1]);
+    }
+
+    private static void reverse(String[] strArray, int start, int end) {
+        while(start < end) {
+            String tmp = strArray[start];
+            strArray[start] = strArray[end];
+            strArray[end] = tmp;
+            start++;
+            end--;
+        }
+    }
