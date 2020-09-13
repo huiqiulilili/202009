@@ -1,0 +1,25 @@
+
+    public static void main9(String[] args) {
+        // 输入一个数字，长度
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int[] array = new int[n];
+        for (int i = 0; i <n ; i++) {
+            array[i] = sc.nextInt();
+        }
+
+        int first = array[0],second = Integer.MAX_VALUE;
+
+        for (int i = 1; i < n; i++) {
+            if(array[i] < first) {
+                first = array[i];
+                second = Integer.MAX_VALUE;
+            }else if(array[i] >= first && array[i] < second) {
+                second = array[i];
+            }else if(array[i] >= first && array[i] >= second) {
+                System.out.println("true");
+                return ;
+            }
+        }
+        System.out.println("false");
+    }
