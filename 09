@@ -1,0 +1,35 @@
+/* public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        while (sc.hasNext()) {
+            String s = sc.nextLine();
+
+            StringBuilder sb = new StringBuilder();
+            String result = "";
+            for (int i = 0; i < s.length() ; i++) {
+                char ch = s.charAt(i);
+                if(isFind(ch)) {
+                    sb.append(s.charAt(i));
+                    for (int j = i+1; j < s.length() ; j++) {
+                        if(isFind(s.charAt(j))) {
+                            sb.append(s.charAt(j));
+                        }else {
+                            if(sb.length() > result.length()) {
+                                result = sb.toString();
+                            }
+                            i = j - 1;
+                            break;
+                        }
+                    }
+                }
+                sb = new StringBuilder();
+            }
+            System.out.println(result);
+        }
+    }
+
+    private static boolean isFind(char ch) {
+        if(ch == '5' || ch == '6' || ch =='7' || ch == '8') {
+            return true;
+        }
+        return false;
+    }*/
