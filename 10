@@ -1,0 +1,31 @@
+
+
+    /*public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        while(sc.hasNext()) {
+            String s = sc.nextLine();
+            HashMap<Character,Integer> map = new HashMap<>();
+            for (int i = 0; i < s.length() ; i++) {
+                if(!map.containsKey(s.charAt(i))) {
+                    map.put(s.charAt(i),1);
+                }else {
+                    int count = map.get(s.charAt(i));
+                    map.put(s.charAt(i),count+1);
+                }
+            }
+
+            ArrayList<String> list = new ArrayList<>();
+            ArrayList<Integer> listCount = new ArrayList<>();
+            Set<Character> set = map.keySet();
+            for (char ch : set) {
+                int count = map.get(ch);
+                list.add(ch+""+ "=" + count);
+            }
+
+            Collections.sort(list);
+            for (int i = 0; i < list.size()-1 ; i++) {
+                System.out.print(list.get(i)+" ");
+            }
+            System.out.println(list.get(list.size() - 1));
+        }
+    }*/
