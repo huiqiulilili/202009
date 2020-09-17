@@ -1,0 +1,66 @@
+package 哈哈;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+public class Test13 {
+    public static void main(String[] args) {
+            Scanner sc = new Scanner(System.in);
+            String s = sc.nextLine();
+            List<String> list = new ArrayList<>();
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < s.length(); i++) {
+                char ch = s.charAt(i);
+                if(isNum(ch)) {
+                    sb.append(ch);
+                    for (int j = i + 1; j < s.length(); j++) {
+                        if(isNum(s.charAt(i))) {
+                            sb.append(s.charAt(i));
+                        }else {
+                            int length = sb.length();
+                            if(length == 4 && (Integer.parseInt(sb.toString()) >= 1000) && (Integer.parseInt(sb.toString()) <= 3999)) {
+                                list.add(sb.toString());
+                            }
+                            i = j;
+                            break;
+                        }
+                    }
+                    sb = null;
+                }
+            }
+        for (int i = 0; i < list.size() - 1; i++) {
+            System.out.print(list.get(i)+" ");
+        }
+        System.out.println(list.get(list.size() - 1));
+    }
+
+    private static boolean isNum(char ch) {
+        if(ch >= '0' && ch <= '9') {
+            return true;
+        }
+        return false;
+    }
+
+
+    public static void main3(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        while(sc.hasNext()) {
+            int n = sc.nextInt(); // 爬的
+            int m = sc.nextInt(); // 井深
+            int count = 0; // 爬了多少米
+            int day = 1; // 天数
+            int xiajang = 0;
+            while(true) {
+                count = count + n * day;
+                if(count >= m) {
+                    break;
+                }
+                day++;
+                xiajang += n / Math.pow(2,day - 1);
+                count  = count - count*xiajang;
+            }
+            System.out.println(day);
+        }
+    }
+}
