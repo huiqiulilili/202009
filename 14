@@ -1,0 +1,15 @@
+public  class Fu{
+    public static String m() {
+        try {
+            int a = 10;
+            return "try-return";
+        }finally {
+            System.out.println("finally");
+            return "finally-return ";
+        }
+    }
+
+    public static void main(String[] args) {
+        System.out.println(m());
+    }
+}
