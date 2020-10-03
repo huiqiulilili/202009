@@ -1,0 +1,181 @@
+package 链表ListNode;
+
+public class Test43 {
+    // 思路：遍历然后进行头插
+    public ListNode reverseList(ListNode head) {
+        if(head == null) {
+            return null;
+        }
+
+        ListNode newList = null;
+        for (ListNode cur = head;cur != null;) {
+            ListNode node = cur.next;
+            cur.next = newList;
+            newList = cur;
+            cur = node;
+        }
+        return newList;
+    }
+
+    // 移除链表元素
+    // 遍历整张链表，如果val相等的话就移除
+    // 因为需要删除，所以肯定需要两个指针
+    public ListNode removeElements(ListNode head, int val) {
+        if(head == null) {
+            return null;
+        }
+
+        // p   q
+        ListNode p = head;
+        ListNode q = head.next;
+
+        while(q != null) {
+            if(q.val == val) {
+                p.next = q.next;
+                q = q.next;
+            }else {
+                p = q;
+                q = q.next;
+            }
+        }
+        if(head.val == val) {
+            head = head.next;
+        }
+        return head;
+    }
+
+
+    // 采取快慢指针
+    // 一个指针走的快，一个指针走的慢，遇到null停止，最后走得慢的指向的就是中间节点
+    public ListNode middleNode(ListNode head) {
+        if (head == null || head.next == null) {
+            return null;
+        }
+
+        ListNode s = head;
+        ListNode f = head;
+        while(s != null && f != null) {
+            f = f.next;
+            if(f != null) {
+                f = f.next;
+                s = s.next;
+            }
+        }
+        return s;
+    }
+
+    // 求出长度
+    // 然后length - k,求出倒数第 k 个
+    public ListNode FindKthToTail(ListNode head,int k) {
+        if(head == null) {
+            return null;
+        }
+        int length = getLength(head);
+        if(k > length) {
+            return null;
+        }
+
+        for (int i = 0; i <  length - k ; i++) {
+            head = head.next;
+        }
+        return head;
+    }
+
+    private int getLength(ListNode head) {
+        int length = 0;
+        for (;head != null;head = head.next) {
+            length++;
+        }
+        return length;
+    }
+
+    // 合并两个链表
+    // 遍历两个链表，并比较大小，将小的放入新链表中尾插
+    // 直到一个链表为null，另一个链表直接接在后面即可
+    public ListNode mergeTwoLists(ListNode head1, ListNode head2) {
+        if(head1 == null) {
+            return head2;
+        }
+        if (head2 == null) {
+            return head1;
+        }
+        ListNode newList = null;
+        ListNode cur = null;
+        ListNode cur1 = head1;
+        ListNode cur2 = head2;
+
+        while (cur1 != null && cur2 != null) {
+            // cur1  小
+            if(cur1.val < cur2.val) {
+                if(newList == null) {
+                    newList = cur1;
+                }else {
+                    cur.next = cur1;
+                }
+                cur = cur1;
+                cur1 = cur1.next;
+            }else {
+                if(newList == null) {
+                    newList = cur2;
+                }else {
+                    cur.next = cur2;
+                }
+                cur = cur2;
+                cur2 = cur2.next;
+            }
+        }
+
+        if(cur1 == null) {
+            cur.next = cur2;
+        }else {
+            cur.next = cur1;
+        }
+        return newList;
+    }
+
+    // 链表的分割
+    // 遍历整个链表，大的放在big，小的放在 small
+
+    public ListNode partition(ListNode pHead, int x) {
+        if(pHead == null) {
+            return null;
+        }
+
+        ListNode cur = pHead;
+        ListNode big = null;
+        ListNode bigCur = null;
+        ListNode small = null;
+        ListNode smallCur = null;
+
+        while (cur != null) {
+            if(cur.val < x) {
+                // small
+                if(small == null) {
+                    small = cur;
+                }else {
+                    smallCur.next = cur;
+                }
+                smallCur = cur;
+                cur = cur.next;
+            }else {
+                if(big == null) {
+                    big = cur;
+                }else {
+                    bigCur.next = cur;
+                }
+                bigCur = cur;
+                cur = cur.next;
+            }
+        }
+
+        if(small == null) {
+            return big;
+        }else {
+            smallCur.next = big;
+            if(bigCur != null) {
+                bigCur.next = null;
+            }
+        }
+        return small;
+    }
+}
