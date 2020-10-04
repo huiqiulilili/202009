@@ -1,0 +1,90 @@
+package test.myArrayList;
+
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Stack;
+
+public class MyStack {
+    private int[] array = new int[10];
+    private int top = 0;
+
+    public void ensure() {
+        if(top < array.length) {
+            return;
+        }
+        array = Arrays.copyOf(array,array.length*2);
+    }
+    public int push(int element) {
+        ensure();
+        array[++top] = element;
+        return element;
+    }
+
+    public int pop() {
+        int tmp = array[--top];
+        return tmp;
+    }
+
+    public int peek() {
+        return array[top - 1];
+    }
+
+    public boolean empty() {
+        if(top == 0) {
+            return true;
+        }
+        return false;
+    }
+
+    public int size() {
+        return top;
+    }
+
+
+    public boolean isValid(String s) {
+        if(s == null || s.length() == 0) {
+            return true;
+        }
+        Stack<Character> stack = new Stack<>();
+        char[] chars = s.toCharArray();
+        for (char ch : chars) {
+            switch (ch){
+                case '{':
+                case '(':
+                case '[':
+                    stack.push(ch);
+                    break;
+                case '}':
+                case ']':
+                case ')':
+                    if(stack.isEmpty()) {
+                        return false;
+                    }
+                    char left = stack.pop();
+                    if(!math(left,ch)) {
+                        return false;
+                    }
+            }
+        }
+        if(!stack.isEmpty()) {
+            return false;
+        }
+        return true;
+    }
+
+    private boolean math(char left, char ch) {
+        if(left == '(' && ch == ')') {
+            return true;
+        }
+
+        if(left == '[' && ch == ']') {
+            return true;
+        }
+
+        if(left == '{' && ch == '}') {
+            return true;
+        }
+        return false;
+    }
+}
