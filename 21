@@ -1,0 +1,61 @@
+package backet1.backet2;
+
+import javax.xml.ws.ServiceMode;
+import java.util.concurrent.Semaphore;
+
+public class Test2 {
+    /*static Semaphore semaphore = new Semaphore(1);
+    public static void main(String[] args) {
+        Content content = new Content();
+        for (int i = 0; i <= 10000 ; i++) {
+            Thread t = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        semaphore.acquire();
+                        content.setName(Thread.currentThread().getName());
+                        System.out.println(Thread.currentThread().getName()+"---> " + content.getName());
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }finally {
+                        semaphore.release();
+                    }
+                }
+            });
+            t.start();
+        }
+    }*/
+
+    public static void main(String[] args) {
+        Content content = new Content();
+        for (int i = 0; i <= 10000 ; i++) {
+            Thread t = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    content.setName(Thread.currentThread().getName());
+                    System.out.println(Thread.currentThread().getName()+"---> " + content.getName());
+                }
+            });
+            t.start();
+        }
+    }
+}
+
+class Content  {
+    ThreadLocal<String> t = new ThreadLocal<>();
+    private  String name;
+    public Content() {
+    }
+
+    public Content(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return t.get();
+    }
+
+    public void setName(String name) {
+        t.set(name);
+    }
+}
