@@ -1,0 +1,49 @@
+package test.二进制;
+
+public class Test3 {
+    public static void main(String[] args) {
+
+//        for (int i = 0; i < 100 ; i++) {
+//            MyThread t = new MyThread();
+//            t.start();
+//        }
+//        System.out.println("主线程"+Thread.currentThread().getName());
+
+//        MyRunnable myRunnable = new MyRunnable();
+//        for (int i = 0; i < 100 ; i++) {
+//            Thread t = new Thread(myRunnable);
+//            t.start();
+//        }
+
+//        Thread t1 = new Thread() {
+//            @Override
+//            public void run() {
+//                System.out.println("1");
+//            }
+//        };
+//        t1.start();
+
+        Thread t1 = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                System.out.println("1");
+            }
+        });
+
+        t1.start();
+    }
+}
+
+class MyThread extends Thread {
+    @Override
+    public void run() {
+        System.out.println("多线程");
+    }
+}
+
+class MyRunnable implements Runnable{
+    @Override
+    public void run() {
+        System.out.println(Thread.currentThread().getName()+"多线程");
+    }
+}
