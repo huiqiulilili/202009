@@ -1,0 +1,82 @@
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class Test2 {
+    public static void main(String[] args) {
+        System.out.println(function());
+    }
+
+    public static int function() {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        if(n  <= 3) {
+            return n - 1;
+        }
+
+        int a = n % 3;
+        int b = n / 3;
+
+        if(a == 0) {
+            return (int)Math.pow(3,b);
+        }else if(a == 1) {
+            return (int)Math.pow(3,(b - 1)*4);
+        }else {
+            return (int)Math.pow(3,b)*2;
+        }
+    }
+
+    public static int function2() {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        if(n  <= 3) {
+            return n - 1;
+        }
+
+        int[] dp = new int[n+1];
+
+        dp[0] = 0;
+        dp[1] = 1;
+        dp[2] = 2;
+        dp[3] = 3;
+
+        for (int i = 4; i <= n ; i++) {
+            for (int j = 1; j <= i / 2 ; j++) {
+                dp[i] = Math.max(dp[j] * dp[i - j],dp[i]);
+            }
+        }
+        return dp[n];
+    }
+
+/*
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int hit = sc.nextInt();
+        int t = sc.nextInt();
+
+        int[] array = new int[n];
+        for (int i = 0; i < n ; i++) {
+            array[i] = sc.nextInt();
+        }
+
+        Arrays.sort(array);
+
+//        System.out.println(Arrays.toString(array));
+
+        int result = 0;
+        int count = 0;
+        for (int i = 0; i < n ; i++) {
+            if((array[i] % hit ) == 0) {
+                count += (array[i] / hit);
+            }else {
+                count += ((array[i] / hit) + 1);
+            }
+            if(count <= t) {
+                result++;
+            }else {
+                break;
+            }
+        }
+        System.out.println(result);
+    }*/
+}
