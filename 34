@@ -1,0 +1,91 @@
+package 文件;
+
+import java.io.*;
+
+public class Tesr {
+
+
+
+    // 字符流  Writer   写出
+    private static void f() throws IOException {
+        FileWriter fw = new FileWriter("demo.txt");
+        fw.write("abc");
+        fw.flush();
+        fw.close();
+    }
+
+    // 字符流 Reader 读入 一次读取一个字节
+    private static void f2() throws IOException {
+        FileReader fr = new FileReader("demo.txt");
+        int ch = 0;
+        while ((ch = fr.read()) != -1) {
+            System.out.print((char)ch);
+        }
+        fr.close();
+    }
+
+    // 字符流 Reader 读入 一次读取一个字节
+    private static void f3() throws IOException {
+        FileReader fr = new FileReader("demo.txt");
+        char[] chars = new char[1024];
+        int ch = 0;
+        while ((ch = fr.read(chars)) != -1) {
+            System.out.println(new String(chars,0,ch));
+        }
+        fr.close();
+    }
+
+
+    private static void f4() throws IOException {
+        FileWriter fw = new FileWriter("demo3.txt");
+
+        FileReader fr = new FileReader("demo1.txt");
+
+        // 一次写入一个字符
+        /*char[] chars = new char[1024];
+        int ch = 0;
+        while ((ch = fr.read(chars)) != -1) {
+            fw.write(new String(chars,0,ch));
+        }*/
+
+
+        // 一次写入一个字节
+        int ch = 0;
+        while ((ch = fr.read()) != -1) {
+            fw.write((char) ch);
+        }
+
+        fr.close();
+        fw.close();
+    }
+
+    // 字符流缓冲区 BufferedReader
+    private static void f5() throws IOException {
+        FileWriter fw = new FileWriter("demo4.txt");
+        BufferedWriter bw = new BufferedWriter(fw);
+        bw.write("abc/n刘雨昕");
+        bw.newLine();
+        bw.write("abc/n刘雨昕");
+        bw.flush();
+        bw.close();
+    }
+
+    private static void f6() throws IOException {
+        FileReader fr = new FileReader("demo4.txt");
+        BufferedReader br = new BufferedReader(fr);
+
+        String line = null;
+        while ((line = br.readLine()) != null) {
+            System.out.println(line);
+        }
+        br.close();
+    }
+
+    public static void main(String[] args) throws IOException {
+//        f2();
+//        f3();
+//        f4();
+//        f5();
+        f6();
+    }
+}
