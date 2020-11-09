@@ -1,0 +1,33 @@
+package com;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+
+/*
+* 重定向
+* */
+@WebServlet("/demo01")
+public class ResponseDemo01 extends HttpServlet {
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        System.out.println("demo01========");
+        /*// 设置状态码302
+        resp.setStatus(302);
+        // 设置响应头location
+        resp.setHeader("location","/demo02");*/
+
+        req.setAttribute("msg","haha");
+        // 简单的重定向方法
+        resp.sendRedirect(req.getContextPath()+"/demo02");
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        doPost(req,resp);
+    }
+}
