@@ -1,0 +1,48 @@
+package test;
+
+
+import java.io.*;
+
+class Person implements Serializable {
+    private String name;
+    private int age;
+
+    public Person(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "name='" + name + '\'' +
+                ", age=" + age +
+                '}';
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+}
+public class TestDemo01 {
+    public static void main(String[] args) throws IOException {
+        Person p1 = new Person("张三",18);
+        ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("f:/user.bat"));
+        oos.writeObject(p1);
+
+        oos.flush();
+        oos.close();
+    }
+}
