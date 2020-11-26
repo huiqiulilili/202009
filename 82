@@ -1,0 +1,10 @@
+
+  <!--  <bean id="userService" class="com.hui.service.UserServiceImpl"/>
+    <bean id="mylog" class="com.hui.log.MyLog"/>
+    <aop:config>
+        <aop:aspect ref="mylog">
+            <aop:pointcut id="diypointcut" expression="execution(* com.hui.service.UserServiceImpl.*(..))"/>
+            <aop:before method="before" pointcut-ref="diypointcut"/>
+            <aop:after method="after" pointcut-ref="diypointcut"/>
+        </aop:aspect>
+    </aop:config>-->
