@@ -1,0 +1,16 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
+  <head>
+    <title>$Title$</title>
+  </head>
+  <body>
+  <%
+    pageContext.setAttribute("刘雨昕1","刘雨昕1");
+    request.setAttribute("刘雨昕2","刘雨昕2");
+    session.setAttribute("刘雨昕3","刘雨昕3");
+    application.setAttribute("刘雨昕4","刘雨昕4");
+
+    pageContext.forward("index2.jsp");
+  %>
+  </body>
+</html>
