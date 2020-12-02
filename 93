@@ -1,0 +1,26 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
+  <head>
+    <title>$Title$</title>
+  </head>
+  <body>
+
+  <%
+    String l1 = (String) pageContext.getAttribute("刘雨昕1");
+    String l2 = (String) request.getAttribute("刘雨昕2");
+    String l3 = (String) session.getAttribute("刘雨昕3");
+    String l4 = (String) application.getAttribute("刘雨昕4");
+    String l5 = (String) application.getAttribute("刘雨昕5");
+
+    out.println(l1);
+    out.println(l2);
+    out.println(l3);
+    out.println(l4);
+    out.println(l5);
+  %>
+
+
+
+
+  </body>
+</html>
