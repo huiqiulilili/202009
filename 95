@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+
+
+    </script>
+</head>
+<body>
+
+<!--<dl id="app">
+    <dt>Java</dt>
+    <dd>JavaSE</dd>
+    <dd>JavaEE</dd>
+</dl>
+
+<script>
+    var dl = document.getElementById('app');
+</script>-->
+
+
+
+<h1>标题</h1>
+<p id="p1">p1</p>
+<p class="p2">p2</p>
+
+<script>
+    h1  = document.getElementsByTagName("h1");
+    p1 = document.getElementById("p1")
+    p2 = document.getElementsByClassName("p2")
+
+</script>
+</body>
+</html>
