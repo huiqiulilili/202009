@@ -1,0 +1,27 @@
+package lesson02;
+
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.FutureTask;
+
+public class CallabaleTest {
+    public static void main(String[] args) throws ExecutionException, InterruptedException {
+        MyCallable myCallable = new MyCallable();
+
+        FutureTask futureTask = new FutureTask(myCallable);
+
+        new Thread(futureTask,"A").start();
+
+        String o = (String) futureTask.get(); // 获取Callable的返回结果
+        System.out.println(o);
+    }
+}
+
+class MyCallable implements Callable<String> {
+
+    @Override
+    public String call() throws Exception {
+        System.out.println("calll()==========");
+        return "12345";
+    }
+}
