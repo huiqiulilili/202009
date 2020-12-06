@@ -1,0 +1,82 @@
+package 枚举;
+
+public class Test2 {
+    public static void main(String[] args) {
+        /*System.out.println(Season2.SPRING);
+        System.out.println(Season2.SUMMER);
+        System.out.println(Season2.AUTUMN);
+        System.out.println(Season2.WINTER);*/
+//        System.out.println(Season2.class.getSuperclass());
+       /* Season2[] values = Season2.values();
+        for (Season2 value : values) {
+            System.out.println(value);
+        }*/
+        Season2 winter = Season2.valueOf("WINTER");
+        System.out.println(winter);
+
+        winter.show();
+    }
+}
+interface Info{
+    void    show();
+}
+
+enum  Season2 implements Info{
+    // 1、提供当前枚举类的多个对象，多个对象之间用 , 隔开
+    SPRING ("春天","spring"){
+        public void show() {
+            System.out.println("这是春天");
+        }
+    },
+    SUMMER ("夏天","summer"){
+        public void show() {
+            System.out.println("这是夏天");
+        }
+    },
+    AUTUMN ("秋天","autumn"){
+        public void show() {
+            System.out.println("这是秋天");
+        }
+    },
+    WINTER ("冬天","winter"){
+        public void show() {
+            System.out.println("这是冬天");
+        }
+    };
+
+
+    // 2、声明Season对象的属性：private final修饰
+    private final String seasonName;
+    private final String seasonDesc;
+
+    // 3、私有化类的构造器
+    private Season2(String seasonName, String seasonDesc) {
+        this.seasonName = seasonName;
+        this.seasonDesc = seasonDesc;
+    }
+
+
+
+
+    //4、其他诉求
+
+    public String getSeasonName() {
+        return seasonName;
+    }
+
+    public String getSeasonDesc() {
+        return seasonDesc;
+    }
+
+    /*public void show() {
+        System.out.println("这是一个季节");
+    }*/
+
+ /*   @Override
+    public String toString() {
+        return "Season{" +
+                "seasonName='" + seasonName + '\'' +
+                ", seasonDesc='" + seasonDesc + '\'' +
+                '}';
+    }*/
+}
