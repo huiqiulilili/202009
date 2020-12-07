@@ -1,0 +1,61 @@
+package com.hui.controller;
+
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.servlet.http.HttpServletRequest;
+
+@Controller
+public class TestController {
+
+    /**
+     * controller到controller  redirect
+     *  @return
+     */
+    @RequestMapping("test4")
+    public String test4() {
+        System.out.println("controller -> controller : redirect");
+        return "redirect:/test2";
+    }
+
+    /**
+     * controller到controller   froward
+     *  @return
+     */
+    @RequestMapping("test3")
+    public String test3() {
+        System.out.println("controller -> controller : froward");
+        return "forward:test1";
+    }
+
+    /**
+     * controller到页面froward
+     *  @return
+     */
+    @RequestMapping("test1")
+    public String test1() {
+        System.out.println("controller -> index.jsp : froward");
+        return "index";
+    }
+
+    /**
+     * controller到页面redirect
+     * @return
+     */
+    @RequestMapping("test2")
+    public String test2() {
+        System.out.println("controller -> index.jsp : redirect");
+        return "redirect:/index.jsp";
+    }
+
+    @ResponseBody
+    @RequestMapping("test")
+    public String test(String name,String pwd,HttpServletRequest request) {
+        System.out.println("========2==============");
+        request.setAttribute("user",name+pwd);
+        System.out.println(request.getAttribute("user"));
+        return "success";
+    }
+}
