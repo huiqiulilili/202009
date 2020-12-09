@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <div id="app">
+        <!--<a href="#/login">登录</a>
+        <a href="#/register">注册</a>-->
+
+        <!--router-link 好处：书写路由路径不需要#  to：用来书写路由路径-->
+        <router-link to="/login" tag="button">登录</router-link>
+        <router-link to="/register">注册</router-link>
+        <!--路由-->
+        <router-view></router-view>
+
+    </div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+
+<script>
+
+    // 声明组件模板
+    const login = {
+        template:"<h1>用户登录</h1>"
+    };
+
+    const register = {
+        template:"<h1>用户注册</h1>"
+    };
+
+    // 创建路由对象
+    const router = new VueRouter({
+        routers: [
+            {path:'/login',component:login},
+            {path:'/register',component:register}
+        ]
+    });
+
+
+    const  app = new Vue({
+        el:"#app",
+        router // 注册路由对象
+    });
+
+</script>
+
+</body>
+</html>
