@@ -1,0 +1,45 @@
+package lesson04;
+
+
+public class Test02  {
+    public static void main(String[] args) {
+//        System.out.println(Season2.SPRING);
+
+
+        for (Season2 value : Season2.values()) {
+            System.out.println(value);
+        }
+    }
+}
+
+
+enum  Season2 {
+    SPRING ("春天","spring"),
+    SUMMER ("夏天","summer"),
+    AUTUMN ("秋天","autumn"),
+    WINTER ("冬天","winter");
+
+    private final String seasonName;
+    private final String seasonDesc;
+
+    private Season2(String seasonName, String seasonDesc) {
+        this.seasonName = seasonName;
+        this.seasonDesc = seasonDesc;
+    }
+
+    public String getSeasonName() {
+        return seasonName;
+    }
+
+    public String getSeasonDesc() {
+        return seasonDesc;
+    }
+
+    @Override
+    public String toString() {
+        return "Season2{" +
+                "seasonName='" + seasonName + '\'' +
+                ", seasonDesc='" + seasonDesc + '\'' +
+                '}';
+    }
+}
