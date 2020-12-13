@@ -1,0 +1,37 @@
+package com.hui.controller;
+
+
+import com.hui.pojo.User;
+import com.hui.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+
+import java.util.List;
+
+
+@Controller
+public class UserController {
+
+    @GetMapping("/test")
+    public String  test() {
+        return "hello";
+    }
+
+    @Autowired
+    UserService userService;
+
+    @GetMapping("/findAll")
+    public String findAll(Model model) {
+        List<User> users = userService.findAll();
+        model.addAttribute("users",users);
+        return "showAll";
+    }
+
+    @GetMapping("/save")
+    public String save(User user) {
+         userService.save(user);
+         return "redirect:/findAll";
+    }
+}
