@@ -1,0 +1,292 @@
+枚举类
+一、前提
+1、前提：类的对象只有有限个并且为确定的。
+
+2、什么时候使用？当需要定义一组常量时，强烈建议使用枚举类。
+
+二、如何定义枚举类
+两种方法
+
+自定义枚举类
+使用enum关键字定义枚举类
+方法一：自定义枚举类
+
+package 枚举;
+
+public class Test01 {
+    public static void main(String[] args) {
+         System.out.println(Season.SPRING);
+        System.out.println(Season.SUMMER.toString());
+        System.out.println(Season.AUTUMN);
+        System.out.println(Season.WINTER);
+    }
+}
+
+class Season{
+    // 0、声明Season对象的属性：private final修饰
+    private final String seasonName;
+    private final String seasonDesc;
+    
+    // 1、私有化类的构造器
+    private Season(String seasonName, String seasonDesc) {
+        this.seasonName = seasonName;
+        this.seasonDesc = seasonDesc;
+    }
+
+    // 3、提供当前枚举类的多个对象：public static final修饰
+    public static final Season SPRING = new Season("春天","spring");
+    public static final Season SUMMER = new Season("夏天","summer");
+    public static final Season AUTUMN = new Season("秋天","autumn");
+    public static final Season WINTER = new Season("冬天","winter");
+
+    //4、其他诉求
+    public String getSeasonName() {
+        return seasonName;
+    }
+
+    public String getSeasonDesc() {
+        return seasonDesc;
+    }
+
+    @Override
+    public String toString() {
+        return "Season{" +
+                "seasonName='" + seasonName + '\'' +
+                ", seasonDesc='" + seasonDesc + '\'' +
+                '}';
+    }
+}
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+运行结果：
+
+Season{seasonName='春天', seasonDesc='spring'}
+Season{seasonName='夏天', seasonDesc='summer'}
+Season{seasonName='秋天', seasonDesc='autumn'}
+Season{seasonName='冬天', seasonDesc='winter'}
+1
+2
+3
+4
+方法二：使用enum关键字定义枚举类
+
+package 枚举;
+
+public class Test2 {
+    public static void main(String[] args) {
+        System.out.println(Season2.SPRING);
+        System.out.println(Season2.SUMMER);
+        System.out.println(Season2.AUTUMN);
+        System.out.println(Season2.WINTER);
+        System.out.println(Season2.class.getSuperclass());
+    }
+}
+
+enum  Season2{
+    // 1、提供当前枚举类的多个对象，多个对象之间用 , 隔开
+    SPRING ("春天","spring"),
+    SUMMER ("夏天","summer"),
+    AUTUMN ("秋天","autumn"),
+    WINTER ("冬天","winter");
+
+
+    // 2、声明Season对象的属性：private final修饰
+    private final String seasonName;
+    private final String seasonDesc;
+
+    // 3、私有化类的构造器
+    private Season2(String seasonName, String seasonDesc) {
+        this.seasonName = seasonName;
+        this.seasonDesc = seasonDesc;
+    }
+    
+    //4、其他诉求
+    public String getSeasonName() {
+        return seasonName;
+    }
+
+    public String getSeasonDesc() {
+        return seasonDesc;
+    }
+
+ /*   @Override
+    public String toString() {
+        return "Season{" +
+                "seasonName='" + seasonName + '\'' +
+                ", seasonDesc='" + seasonDesc + '\'' +
+                '}';
+    }*/
+}
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+运行结果：
+
+SPRING
+SUMMER
+AUTUMN
+WINTER
+class java.lang.Enum
+1
+2
+3
+4
+5
+说明：定义的枚举类默认继承于java.lang.Enum类
+
+三、Enum类的主要方法
+1、values()：返回枚举类型的对象数组。该方法可以很方便的遍历所有的枚举值
+
+2、valueOf(String str)：可以把一个字符串转为对应的枚举类对象。要求字符串必须是枚举类对象的“名字”。如果不是，会运行时异常。
+
+3、toString()：返回当前枚举类对象常量的名称。
+
+public static void main(String[] args) {
+    Season2[] values = Season2.values();
+    for (Season2 value : values) {
+        System.out.println(value);
+    }
+}
+1
+2
+3
+4
+5
+6
+运行结果：
+
+SPRING
+SUMMER
+AUTUMN
+WINTER
+1
+2
+3
+4
+public static void main(String[] args) {
+        Season2 winter = Season2.valueOf("WINTER");
+        System.out.println(winter);
+    }
+1
+2
+3
+4
+运行结果：
+
+WINTER
+1
+四、使用enum关键字定义枚举类实现接口的情况
+1、情况1：实现接口，在enum类中实现抽象方法（和在类中实现抽象方法一样）
+
+2、情况2：让枚举类的对象分别实现接口中的抽象方法
+
+enum  Season2 implements Info{
+    SPRING ("春天","spring"){
+        public void show() {
+            System.out.println("这是春天");
+        }
+    },
+    SUMMER ("夏天","summer"){
+        public void show() {
+            System.out.println("这是夏天");
+        }
+    },
+    AUTUMN ("秋天","autumn"){
+        public void show() {
+            System.out.println("这是秋天");
+        }
+    },
+    WINTER ("冬天","winter"){
+        public void show() {
+            System.out.println("这是冬天");
+        }
+    };
+
+}
