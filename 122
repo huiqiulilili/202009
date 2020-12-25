@@ -1,0 +1,34 @@
+package com.hui.controller;
+
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+public class ControllerTest {
+
+    @RequestMapping("/test")
+    public String test(Model model) {
+        model.addAttribute("msg","test");
+        return "test";
+    }
+
+
+    @GetMapping("h1/{a}/{b}")
+    public String hello(@PathVariable int a,@PathVariable int b, Model model) {
+        int s = a+b;
+        model.addAttribute("msg","hello_Get"+s);
+        return "test";
+    }
+
+    @PostMapping("h1/{a}/{b}")
+    public String hello2(@PathVariable int a,@PathVariable int b,Model model) {
+        int s = a+b;
+        model.addAttribute("msg","hello_Post"+s);
+        return "test";
+    }
+}
