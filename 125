@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!--    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />-->
+<!--    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />-->
+    <title>Hello, World</title>
+    <!--设置容器样式-->
+    <style type="text/css">
+        html{height:100%}
+        body{height:100%;margin:0px;padding:0px}
+        #container1{height:100%}
+    </style>
+    <!--引用百度地图API文件-->
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=3.0&ak=4du7rr6Cd7A8x5OO5jPVFUZTzuC54Bm8">
+        //v3.0版本的引用方式：src="http://api.map.baidu.com/api?v=3.0&ak=您的密钥"
+    </script>
+</head>
+
+<body>
+<!--创建地图容器元素-->
+<div id="container1"></div>
+<script type="text/javascript">
+    var map = new BMap.Map("container1",{
+        enableBizAuthLogo: false
+    });
+    // 创建地图实例
+    var point = new BMap.Point(108.95309828,34.2777999);
+    // 创建点坐标
+    map.centerAndZoom(point, 15);
+    // 初始化地图，设置中心点坐标和地图级别
+
+    map.addControl(new BMap.NavigationControl());
+    map.setCurrentCity("北京"); // 仅当设置城市信息时，MapTypeControl的切换功能才能可用
+    var opts = {offset: new BMap.Size(150, 5)}
+    map.addControl(new BMap.ScaleControl(opts));
+
+
+
+    var map = new BMap.Map("container1");
+    var point = new BMap.Point(116.404, 39.915);
+    map.centerAndZoom(point, 15);
+    var marker = new BMap.Marker(point);        // 创建标注
+    map.addOverlay(marker);
+
+
+
+    marker.addEventListener("click", function(){
+        alert("您点击了标注");
+    });
+    marker.enableDragging(true);
+    marker.addEventListener("dragend", function(e){
+        alert("当前位置：" + e.point.lng + ", " + e.point.lat);
+    })
+
+    var polyline = new BMap.Polyline([
+            new BMap.Point(116.399, 39.910),
+            new BMap.Point(116.405, 39.920)
+        ],
+        {strokeColor:"blue", strokeWeight:6, strokeOpacity:0.5}
+    );
+    map.addOverlay(polyline);
+
+
+    var opts = {
+        width : 250,     // 信息窗口宽度
+        height: 100,     // 信息窗口高度
+        title : "Hello"  // 信息窗口标题
+    }
+    var infoWindow = new BMap.InfoWindow("World", opts);  // 创建信息窗口对象
+    map.openInfoWindow(infoWindow, map.getCenter());      // 打开信息窗口
+
+
+
+
+    var map = new BMap.Map("l-map");         // 创建地图实例
+    var point = new BMap.Point(116.404, 39.915);  // 创建点坐标
+    map.centerAndZoom(point, 15);                 // 初始化地图，设置中心点坐标和地图级别
+    var traffic = new BMap.TrafficLayer();        // 创建交通流量图层实例
+    map.addTileLayer(traffic);                    // 将图层添加到地图上
+
+
+
+    var map = new BMap.Map("l-map");          // 创建地图实例
+    var point = new BMap.Point(116.404, 39.915);  // 创建点坐标
+    map.centerAndZoom(point,15);                  // 初始化地图，设置中心点坐标和地图级别
+    var tilelayer = new BMap.TileLayer();         // 创建地图层实例
+    tilelayer.getTilesUrl=function(){             // 设置图块路径
+        return "layer.gif";
+    };
+    map.addTileLayer(tilelayer);                // 将图层添加到地图上
+    var customLayer=new BMap.CustomLayer({
+        geotableId: 30960,
+        q: '', //检索关键字
+        tags: '', //空格分隔的多字符串
+        filter: '' //过滤条件,参考http://lbsyun.baidu.com/index.php?title=lbscloud/api/geosearch
+    });
+    map.addTileLayer(customLayer);//添加自定义图层
+
+    customLayer.addEventListener('onhotspotclick',callback);//单击图层事件
+    customLayer.addEventListener('onhotspotclick',callback);//单击图层事件
+    function callback(e)//单击热点图层
+    {
+        var customPoi = e.customPoi,  //获取poi对象
+            str = [];
+        str.push("address = " + customPoi.address);
+        str.push("phoneNumber = " + customPoi.phoneNumber);
+        var content = '<p style="width:280px;margin:0;line-height:20px;">地址：' + customPoi.address + '<br>电话：' + customPoi.phoneNumber + '</p>';
+        var searchInfoWindow = new BMapLib.SearchInfoWindow(map, content, {  //带检索的信息窗口
+            title: customPoi.title, //标题
+            width: 290, //宽度
+            height: 40, //高度
+            panel : "panel", //检索结果面板
+            enableAutoPan : true, //自动平移
+            enableSendToPhone: true, //是否显示发送到手机按钮
+            searchTypes :[
+                BMAPLIB_TAB_SEARCH,   //周边检索
+                BMAPLIB_TAB_TO_HERE,  //到这里去
+                BMAPLIB_TAB_FROM_HERE //从这里出发
+            ]
+        });
+        var point = new BMap.Point(customPoi.point.lng, customPoi.point.lat);
+        searchInfoWindow.open(point);}
+    }
+
+    var drawingManager = new BMapLib.DrawingManager(map, {
+//使用鼠标工具需要引入鼠标工具开源库DrawingManager_min.js及样式文件DrawingManager_min.css
+        isOpen: false, //是否开启绘制模式
+        enableDrawingTool: false, //是否显示工具栏
+        drawingToolOptions: {
+            anchor: BMAP_ANCHOR_TOP_RIGHT, //位置
+            offset: new BMap.Size(5, 5), //偏离值
+            scale: 0.8 //工具栏缩放比例
+        }
+    });
+    drawingManager.setDrawingMode(BMAP_DRAWING_CIRCLE);
+    drawingManager.open();
+    drawingManager.addEventListener('circlecomplete', function(e) {
+        circle = e;
+        var radius= parseInt(e.getRadius()); //检索半径必须是整型
+        var center= e.getCenter();
+        drawingManager.close();
+        if (customLayer) {
+            map.removeTileLayer(customLayer);
+        }
+        localSearch.searchNearby(' ', center,radius,{customData:{databoxId: 4032}});//用新创建的databoxid替换该值
+    });
+
+
+
+
+
+
+
+
+    /*function ZoomControl(){
+        // 设置默认停靠位置和偏移量
+        this.defaultAnchor = BMAP_ANCHOR_TOP_LEFT;
+        this.defaultOffset = new BMap.Size(10, 10);
+    }
+    // 通过JavaScript的prototype属性继承于BMap.Control
+    ZoomControl.prototype = new BMap.Control();
+
+    ZoomControl.prototype.initialize = function(map){
+        // 创建一个DOM元素
+        var div = document.createElement("div");
+        // 添加文字说明
+        div.appendChild(document.createTextNode("放大2级"));
+        // 设置样式
+        div.style.cursor = "pointer";
+        div.style.border = "1px solid gray";
+        div.style.backgroundColor = "white";
+        // 绑定事件，点击一次放大两级
+        div.onclick = function(e){
+            map.zoomTo(map.getZoom() + 2);
+        }
+        // 添加DOM元素到地图中
+        map.getContainer().appendChild(div);
+        // 将DOM元素返回
+        return div;
+    }
+    // 创建控件实例
+    var myZoomCtrl = new ZoomControl();
+    // 添加到地图当中
+    map.addControl(myZoomCtrl);*/
+
+    window.setTimeout(function () {
+        /*panTo()方法将让地图平滑移动至新中心点*/
+        map.panTo(new BMap.Point(116.409, 39.918));
+    }, 2000);
+
+
+    map.enableScrollWheelZoom(true);     //开启鼠标滚轮缩放
+</script>
+</body>
+</html>
