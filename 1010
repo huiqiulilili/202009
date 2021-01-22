@@ -1,0 +1,25 @@
+import dao.UserDaoMysql;
+import dao.UserDaoOracle;
+import org.junit.Test;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import service.UserServiceImpl;
+
+public class MyTest {
+    @Test
+    public void test1() {
+//        UserService userService = new UserServiceImpl();
+//        userService.getUser();
+
+        UserServiceImpl userService = new UserServiceImpl();
+        userService.setUserDao(new UserDaoOracle());
+        userService.getUser();
+    }
+
+    @Test
+    public void test2() {
+        ApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
+        UserDaoMysql userServiceMysql = context.getBean("userServiceMysql", UserDaoMysql.class);
+        userServiceMysql.getUser();
+    }
+}
