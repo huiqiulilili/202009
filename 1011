@@ -1,0 +1,19 @@
+// 导入模块
+const http = require('http');
+
+
+// 1、创建一个httpservlet服务
+http.createServer(function(require,response){
+    // 浏览器怎么认识 hello servlet
+    response.writeHead(200,{'Content-type':'text/html'}); //plain
+
+    // 给浏览器输出内容
+    response.end("<strong>hello servlet!!!!</strong>");
+}).listen(8887);
+
+console.log("你启动的服务是：http://localhost:8887已启动bode")
+// 2、监听一个端口 8887
+// 3、启动运行服务：node httpservlet.js
+// 4、在浏览器访问http://localhost:8887
+
+
