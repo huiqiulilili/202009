@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../js/jquery-3.4.1.js"></script>
+    <script>
+        function getContext(){
+            // 过滤选择器
+            // 1、获取一组对象中的第一个jQuery对象
+            //$("div:first").css({"background":"blue"});
+
+            // 2、获取一组对象中的最后一个jQuery对象
+            //$("div:last").css({"background":"yellow"});
+
+            // 3、排除一组中指定的选择器
+            //$("div:not('#dd')").css({"background":"yellow"});
+
+            // 4、获取一组jQuery对象中偶数对象 
+            //$("div:even").css({"background":"yellow"});
+            //$("div:odd").css({"background":"blue"});
+
+            // 5、根据指定的索引|下标范围取出一组jQuery对象
+           // $("div:eq(0)").css({"background":"blue"});
+            //$("div:gt(1)").css({"background":"blue"});
+            $("div:lt(2)").css({"background":"blue"});
+        }
+    </script>
+</head>
+<body>
+    <div style="width: 100px; height: 100px; border: 1px red solid;" id="dd"></div><br>
+    <div style="width: 100px; height: 100px; border: 1px red solid;" id="dd1" class = "aa"></div><br>
+    <div style="width: 100px; height: 100px; border: 1px red solid;" id="dd2" class = "aa"></div><br>
+    <div style="width: 100px; height: 100px; border: 1px red solid;" id="dd3" class = "aa"></div><br>
+
+    <input type="button" value="层次选择器" onclick="getContext()">
+</body>
+</html>
