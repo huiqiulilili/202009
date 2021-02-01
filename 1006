@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../js/jquery-3.4.1.js"></script>
+</head>
+<body>
+    
+    <div id="dd" style="width: 100px; height: 100px; border: 1px red solid;"></div>
+    <input type="button" value="点击" onclick="test()">
+
+    <script>
+        
+        function test() {
+            // dom对象转为jquery对象【重点】
+            var divDom = document.getElementById("dd");
+            // Dom转为jQuery对象
+            $(divDom).css({"background":"blue"});
+
+            // jQuery对象 转换为 dom 对象【了解】
+            console.log($(divDom)[0]);
+        }    
+    </script>
+
+</body>
+</html>
