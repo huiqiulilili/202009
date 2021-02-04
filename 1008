@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        var obj = {name:"张三",age:23};
+    //     obj.sex = "女";
+    //     console.log(obj);
+    
+    // // 获取对象的属性
+    // // 1、对象.属性名
+    // console.log("---------------");
+    // console.log(obj.name);
+    // // 2、对象名['属性名']
+    // console.log(obj.age);
+
+
+    // for(pop in obj) {
+    //     console.log(pop);
+    //     console.log(obj[pop]);
+    // }
+
+
+    var user = {
+        name:"张三",
+        age:23,
+        run:function(){
+            console.log(this.name+"会跑了");
+        }
+    };
+
+    // user.run();
+
+    for(pop in user) {
+        if(typeof user[pop] == "function") {
+            user[pop]();
+        }else {
+            console.log(user[pop]);
+        }
+    }
+    </script>
+
+
+
+</body>
+</html>
